@@ -45,15 +45,46 @@ namespace Lab1
             collections.Add(col);
             var catalog = new Catalog(artists.ToList(), tracks, albums, collections);
             
-            catalog.SearchArtistByName("Eminem");
-            Console.WriteLine();
-            catalog.SearchAlbumByName("Cool Album");
-            Console.WriteLine();
-            catalog.SearchTrackByName("Venom");
-            Console.WriteLine();
-            catalog.SearchTracksByGenre("rap");
-            Console.WriteLine();
-            catalog.SearchCollectionByName("Best 10's tracks");
+            while (true) {
+                Console.WriteLine("Введите тип поиска: ");
+                Console.WriteLine("1 - артист по имени");
+                Console.WriteLine("2 - альбом по названию");
+                Console.WriteLine("3 - трек по названию");
+                Console.WriteLine("4 - треки по жанру");
+                Console.WriteLine("5 - коллекции по названию");
+
+                var type = Convert.ToInt32(Console.ReadLine());
+                
+                Console.WriteLine("Введите поисковый запрос: ");
+                var search = Console.ReadLine();
+                switch (type) {
+                    case 1:
+                        catalog.SearchArtistByName(search);
+                        Console.WriteLine();
+                        break;
+                    case 2:
+                        catalog.SearchAlbumByName(search);
+                        Console.WriteLine();
+                        break;
+                    case 3:
+                        catalog.SearchTrackByName(search);
+                        Console.WriteLine();
+                        break;
+                    case 4:
+                        catalog.SearchTracksByGenre(search);
+                        Console.WriteLine();
+                        break;
+                    case 5:
+                        catalog.SearchCollectionByName(search);
+                        Console.WriteLine();
+                        break;
+                }
+                Console.WriteLine("Хотите продолжить? 1 - да; любая другая цифра - нет");
+                var cont = Convert.ToInt32(Console.ReadLine());
+                if (cont != 1) {
+                    break;
+                }
+            }
         }
     }
 }
